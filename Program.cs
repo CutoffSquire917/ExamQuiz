@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using ExamQuiz;
 using Newtonsoft.Json;
 using GlobalsData;
+using System.Diagnostics;
 
 public class Question
 {
@@ -161,7 +162,7 @@ public class User
     public string Login { get; private set; }
     public string Password { get; private set; } = string.Empty;
     public DateTime BithdayDate { get; set; }
-    public List<(Quiz, double, DateTime)> UserHistory { get; private set; }
+    public List<(string, double, DateTime)> UserHistory { get; private set; }
 
     public User(string login, string password, DateTime bithdayDate)
     {
@@ -169,15 +170,15 @@ public class User
         Login = login;
         SetPassword(password);
         BithdayDate = bithdayDate;
-        UserHistory = new List<(Quiz, double, DateTime)>();
+        UserHistory = new List<(string, double, DateTime)>();
     }
     [JsonConstructor]
-    public User(string login, string password, DateTime bithdayDate, List<(Quiz, double, DateTime)> userHistory)
+    public User(string login, string password, DateTime bithdayDate, List<(string, double, DateTime)> userHistory)
     {
         this.Login = login ?? throw new ArgumentNullException("Login can`t be null");
         this.Password = password ?? throw new ArgumentNullException("Password can`t be null");
         this.BithdayDate = bithdayDate;
-        this.UserHistory = userHistory ?? new List<(Quiz, double, DateTime)>();
+        this.UserHistory = userHistory ?? new List<(string, double, DateTime)>();
     }
     public void SetPassword(string password)
     {
@@ -250,9 +251,17 @@ internal static class Program
     [STAThread]
     static void Main()
     {
-        //Quiz quiz = new Quiz();
+        //GlobalData.quizzesData.Initialization();
+        //MessageBox.Show(GlobalData.quizzesData.Items.Count.ToString());
+        //Quiz quiz = new Quiz("New Quiz", "Me");
+        //Question question = new Question("What?");
+        //question.answers.Add("Penis", false);
+        //question.answers[question.answers.ElementAt(1).Key] = true;
+        //quiz.Questions.Add(question);
+
         //GlobalData.quizzesData.Items.Add(quiz);
-        //GlobalData.quizzesData.Preservation();
+        //MessageBox.Show(GlobalData.quizzesData.Items.Count.ToString());
+
         //User user = new User("Admin", "123456abc", DateTime.Today);
         //GlobalData.usersData.Items.Add(user);
         //GlobalData.usersData.Preservation();

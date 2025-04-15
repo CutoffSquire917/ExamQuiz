@@ -23,7 +23,7 @@ namespace ExamQuiz
         private void UC_ResultPage_Load(object sender, EventArgs e)
         {
             double resultInPercentage = Math.Round((100.0 / (double)ResultQuiz.Questions.Count) * (double)Results.Count(r => r == true), 1);
-            Account.user.UserHistory.Add((ResultQuiz, resultInPercentage, DateTime.Today));
+            Account.user.UserHistory.Insert(0, (ResultQuiz.Name, resultInPercentage, DateTime.Today));
 
             this.quizName_label.Text = ResultQuiz.Name;
             this.quizAuthor_label.Text = ResultQuiz.Author;

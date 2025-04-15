@@ -30,6 +30,7 @@ namespace ExamQuiz
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_ResultPage));
             this.quiz_image = new Guna.UI2.WinForms.Guna2PictureBox();
             this.result_progressBar = new Guna.UI2.WinForms.Guna2ProgressBar();
             this.quiz_panel = new Guna.UI2.WinForms.Guna2Panel();
@@ -50,7 +51,7 @@ namespace ExamQuiz
             this.quiz_image.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.quiz_image.BorderRadius = 15;
             this.quiz_image.Cursor = System.Windows.Forms.Cursors.Default;
-            this.quiz_image.Image = global::ExamQuiz.Properties.Resources.default_image;
+            this.quiz_image.Image = ((System.Drawing.Image)(resources.GetObject("quiz_image.Image")));
             this.quiz_image.ImageRotate = 0F;
             this.quiz_image.Location = new System.Drawing.Point(266, 80);
             this.quiz_image.Margin = new System.Windows.Forms.Padding(0);

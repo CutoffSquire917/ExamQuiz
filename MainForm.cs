@@ -32,6 +32,23 @@ namespace ExamQuiz
                 concreteQuiz_page.BringToFront();
             };
 
+            history_page.OpenQuizHandler += (quizName) =>
+            {
+                foreach (var quiz in GlobalsData.GlobalData.quizzesData.Items)
+                {
+                    if (quizName == quiz.Name)
+                    {
+                        concreteQuiz_page.UpdateQuiz(quiz);
+                        break;
+                    }
+                }
+                quizzes_button.Checked = true;
+                close2_button.Text = "RETURN";
+                close2_button.Click -= new System.EventHandler(this.close2_button_Click);
+                close2_button.Click += new System.EventHandler(this.return_button_Click);
+                concreteQuiz_page.BringToFront();
+            };
+
             concreteQuiz_page.StartQuizHandler += (currentQuiz) =>
             {
                 this.Hide();
@@ -53,6 +70,7 @@ namespace ExamQuiz
             if (history_button.Checked)
             {
                 history_page.BringToFront();
+                history_page.UC_HistoryPage_Update();
             }
             if (close2_button.Text == "RETURN")
             {

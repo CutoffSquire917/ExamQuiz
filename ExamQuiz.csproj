@@ -221,7 +221,7 @@
     <None Include="bin\Debug\icons\Settings_selected.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\default_image.png" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
