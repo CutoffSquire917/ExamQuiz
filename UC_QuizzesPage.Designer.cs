@@ -105,6 +105,7 @@ namespace ExamQuiz
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.Controls.Add(this.pagesName_label);
             this.Name = "UC_QuizzesPage";
             this.Size = new System.Drawing.Size(922, 686);

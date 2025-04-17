@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.drag_panel = new System.Windows.Forms.Panel();
             this.hide_button = new Guna.UI2.WinForms.Guna2ControlBox();
             this.close_button = new Guna.UI2.WinForms.Guna2ControlBox();
@@ -89,6 +90,7 @@
             this.close_button.Name = "close_button";
             this.close_button.Size = new System.Drawing.Size(60, 31);
             this.close_button.TabIndex = 0;
+            this.close_button.Click += new System.EventHandler(this.close_button_Click);
             // 
             // drag_control
             // 
@@ -345,6 +347,7 @@
             // 
             // history_page
             // 
+            this.history_page.AutoScroll = true;
             this.history_page.Dock = System.Windows.Forms.DockStyle.Fill;
             this.history_page.Location = new System.Drawing.Point(0, 0);
             this.history_page.Name = "history_page";
@@ -369,8 +372,10 @@
             this.Controls.Add(this.pages_panel);
             this.Controls.Add(this.drag_panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Chill Quiz";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.drag_panel.ResumeLayout(false);
             this.pages_panel.ResumeLayout(false);

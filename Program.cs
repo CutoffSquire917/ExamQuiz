@@ -9,6 +9,7 @@ using ExamQuiz;
 using Newtonsoft.Json;
 using GlobalsData;
 using System.Diagnostics;
+using Guna.UI2.WinForms.Suite;
 
 public class Question
 {
@@ -82,11 +83,12 @@ public class Quiz
 {
     public string Name { get; set; }
     public string Author { get; set; }
+    public string Description { get; set; }
     public string Image { get; set; }
     public List<Question> Questions { get; private set; }
-    public List<(User, double)> TopHistory { get; private set; }
+    public List<(string, double)> TopHistory { get; private set; }
 
-    public Quiz(string name, string author, string image = "default_image.png")
+    public Quiz(string name, string author, string description, string image = "default_image.png")
     {
         if (string.IsNullOrWhiteSpace(name))
         {
@@ -96,21 +98,27 @@ public class Quiz
         {
             throw new ArgumentNullException("Author can`t be null");
         }
+        if (string.IsNullOrWhiteSpace(description))
+        {
+            throw new ArgumentNullException("Description can`t be null");
+        }
         if (!(File.Exists(image))) { image = "default_image.png"; }
         Name = name;
         Author = author;
+        Description = description;
         Image = image;
         Questions = new List<Question>();
-        TopHistory = new List<(User, double)>();
+        TopHistory = new List<(string, double)>();
         Questions.Add(new Question("First question"));
     }
     [JsonConstructor]
-    public Quiz(string name, string author, List<Question> questions, List<(User, double)> topHistory)
+    public Quiz(string name, string author, string description, List<Question> questions, List<(string, double)> topHistory)
     {
         this.Name = name ?? throw new ArgumentNullException("Name can`t be null");
         this.Author = author ?? throw new ArgumentNullException("Author can`t be null");
+        this.Description = description ?? throw new ArgumentNullException("Description can`t be null");
         this.Questions = questions ?? new List<Question>();
-        this.TopHistory = topHistory ?? new List<(User, double)>();
+        this.TopHistory = topHistory ?? new List<(string, double)>();
     }
     public void AddQuestion(Question question)
     {
@@ -138,21 +146,27 @@ public class Quiz
     }
     public void AddToTop(User user, double results)
     {
-        if (TopHistory.Count == 0)
+        int index = TopHistory.FindIndex(u => u.Item1 == user.Login);
+        if (index != -1)
         {
-            TopHistory.Add((user, results));
-            return;
-        }
-        for (int i = 0; i < TopHistory.Count; i++)
-        {
-            if (results > TopHistory[i].Item2)
+            if (results > TopHistory[index].Item2)
             {
-                TopHistory.Insert(i, (user, results));
-                if (TopHistory.Count > 10)
-                {
-                    TopHistory.RemoveAt(TopHistory.Count - 1);
-                }
+                TopHistory[index] = (user.Login, results);
+                TopHistory.OrderBy(r => r.Item2);
+                TopHistory.Reverse();
+                return;
             }
+            else
+            {
+                return;
+            }
+        }
+        TopHistory.Add((user.Login, results));
+        TopHistory.OrderBy(r => r.Item2);
+        TopHistory.Reverse();
+        if (TopHistory.Count > 10)
+        {
+            TopHistory.RemoveAt(TopHistory.Count - 1);
         }
     }
 }
@@ -160,7 +174,7 @@ public class Quiz
 public class User
 {
     public string Login { get; private set; }
-    public string Password { get; private set; } = string.Empty;
+    public string Password { get; set; } = string.Empty;
     public DateTime BithdayDate { get; set; }
     public List<(string, double, DateTime)> UserHistory { get; private set; }
 
@@ -186,6 +200,13 @@ public class User
         if (password.Length < 8) { throw new ArgumentException("Password cannot be less than 8 characters"); }
         if (!(password.Any(char.IsLetter) && password.Any(char.IsDigit))) { throw new ArgumentException("The password must consist of numbers and letters"); }
         Password = password;
+    }
+    public static bool TrySetPassword(string password)
+    {
+        if (string.IsNullOrWhiteSpace(password)) { return false; }
+        if (password.Length < 8) { return false; }
+        if (!(password.Any(char.IsLetter) && password.Any(char.IsDigit))) { return false; }
+        return true;
     }
 }
 
@@ -251,36 +272,17 @@ internal static class Program
     [STAThread]
     static void Main()
     {
-        //GlobalData.quizzesData.Initialization();
-        //MessageBox.Show(GlobalData.quizzesData.Items.Count.ToString());
-        //Quiz quiz = new Quiz("New Quiz", "Me");
-        //Question question = new Question("What?");
-        //question.answers.Add("Penis", false);
-        //question.answers[question.answers.ElementAt(1).Key] = true;
-        //quiz.Questions.Add(question);
-
-        //GlobalData.quizzesData.Items.Add(quiz);
-        //MessageBox.Show(GlobalData.quizzesData.Items.Count.ToString());
-
-        //User user = new User("Admin", "123456abc", DateTime.Today);
-        //GlobalData.usersData.Items.Add(user);
-        //GlobalData.usersData.Preservation();
-
-        //var temp = new Question("Second Quistion");
-        //temp.AddAnswer("option 3");
-        //temp.AddAnswer("option 4");
-        //GlobalData.quizzesData.Items[0].Questions.Add(temp);
-
         GlobalData.usersData.Initialization();
         GlobalData.quizzesData.Initialization();
-        Account.user = GlobalData.usersData.Items[0];
 
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);
-        Application.Run(new MainForm());
+        LoginForm form = new LoginForm();
+        form.Show();
+        Application.Run();
 
-        //GlobalData.usersData.Preservation();
-        //GlobalData.quizzesData.Preservation();
+        GlobalData.usersData.Preservation();
+        GlobalData.quizzesData.Preservation();
 
     }
 }

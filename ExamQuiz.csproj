@@ -104,6 +104,12 @@
     <Compile Include="CurrentQuizFrom.Designer.cs">
       <DependentUpon>CurrentQuizFrom.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,11 +136,23 @@
     <Compile Include="UC_HistoryPage.Designer.cs">
       <DependentUpon>UC_HistoryPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="UC_LoginPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_LoginPage.Designer.cs">
+      <DependentUpon>UC_LoginPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="UC_QuizzesPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UC_QuizzesPage.Designer.cs">
       <DependentUpon>UC_QuizzesPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC_RegistrationPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_RegistrationPage.Designer.cs">
+      <DependentUpon>UC_RegistrationPage.cs</DependentUpon>
     </Compile>
     <Compile Include="UC_ResultPage.cs">
       <SubType>UserControl</SubType>
@@ -150,6 +168,9 @@
     </Compile>
     <EmbeddedResource Include="CurrentQuizFrom.resx">
       <DependentUpon>CurrentQuizFrom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -168,8 +189,14 @@
     <EmbeddedResource Include="UC_HistoryPage.resx">
       <DependentUpon>UC_HistoryPage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UC_LoginPage.resx">
+      <DependentUpon>UC_LoginPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UC_QuizzesPage.resx">
       <DependentUpon>UC_QuizzesPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_RegistrationPage.resx">
+      <DependentUpon>UC_RegistrationPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UC_ResultPage.resx">
       <DependentUpon>UC_ResultPage.cs</DependentUpon>
@@ -220,8 +247,9 @@
   <ItemGroup>
     <None Include="bin\Debug\icons\Settings_selected.png" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <None Include="Resources\imageForLogin.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -169,10 +169,10 @@ namespace ExamQuiz
             this.quizAuthor_label.BackColor = System.Drawing.Color.Transparent;
             this.quizAuthor_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.quizAuthor_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.quizAuthor_label.Location = new System.Drawing.Point(60, 55);
+            this.quizAuthor_label.Location = new System.Drawing.Point(60, 102);
             this.quizAuthor_label.Margin = new System.Windows.Forms.Padding(50, 10, 0, 0);
             this.quizAuthor_label.Name = "quizAuthor_label";
-            this.quizAuthor_label.Size = new System.Drawing.Size(415, 64);
+            this.quizAuthor_label.Size = new System.Drawing.Size(415, 45);
             this.quizAuthor_label.TabIndex = 13;
             this.quizAuthor_label.Text = "quizAuthor_label";
             // 
@@ -183,12 +183,12 @@ namespace ExamQuiz
             | System.Windows.Forms.AnchorStyles.Right)));
             this.quizName_label.AutoSize = false;
             this.quizName_label.BackColor = System.Drawing.Color.Transparent;
-            this.quizName_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.quizName_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.quizName_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.quizName_label.Location = new System.Drawing.Point(60, 10);
             this.quizName_label.Margin = new System.Windows.Forms.Padding(50, 10, 0, 0);
             this.quizName_label.Name = "quizName_label";
-            this.quizName_label.Size = new System.Drawing.Size(415, 57);
+            this.quizName_label.Size = new System.Drawing.Size(401, 102);
             this.quizName_label.TabIndex = 12;
             this.quizName_label.Text = "Quiz name";
             // 

@@ -35,7 +35,12 @@ namespace ExamQuiz
             this.quizName_label = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.start_button = new Guna.UI2.WinForms.Guna2Button();
             this.quiz_panel = new Guna.UI2.WinForms.Guna2Panel();
+            this.top_panel = new Guna.UI2.WinForms.Guna2Panel();
+            this.topTitle_label = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.description_label = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.descriptionTitle_label = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.quiz_image = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.quiz_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.quiz_image)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,11 +67,11 @@ namespace ExamQuiz
             | System.Windows.Forms.AnchorStyles.Right)));
             this.quizName_label.AutoSize = false;
             this.quizName_label.BackColor = System.Drawing.Color.Transparent;
-            this.quizName_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.quizName_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.quizName_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.quizName_label.Location = new System.Drawing.Point(70, 350);
             this.quizName_label.Name = "quizName_label";
-            this.quizName_label.Size = new System.Drawing.Size(415, 57);
+            this.quizName_label.Size = new System.Drawing.Size(523, 57);
             this.quizName_label.TabIndex = 2;
             this.quizName_label.Text = "Quiz name";
             // 
@@ -96,6 +101,10 @@ namespace ExamQuiz
             // 
             this.quiz_panel.BackColor = System.Drawing.Color.Transparent;
             this.quiz_panel.BorderRadius = 30;
+            this.quiz_panel.Controls.Add(this.top_panel);
+            this.quiz_panel.Controls.Add(this.topTitle_label);
+            this.quiz_panel.Controls.Add(this.description_label);
+            this.quiz_panel.Controls.Add(this.descriptionTitle_label);
             this.quiz_panel.Cursor = System.Windows.Forms.Cursors.Default;
             this.quiz_panel.FillColor = System.Drawing.Color.WhiteSmoke;
             this.quiz_panel.Location = new System.Drawing.Point(40, 433);
@@ -106,6 +115,60 @@ namespace ExamQuiz
             this.quiz_panel.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(10, 0, 10, 10);
             this.quiz_panel.Size = new System.Drawing.Size(822, 235);
             this.quiz_panel.TabIndex = 6;
+            // 
+            // top_panel
+            // 
+            this.top_panel.AutoScroll = true;
+            this.top_panel.Location = new System.Drawing.Point(421, 61);
+            this.top_panel.Name = "top_panel";
+            this.top_panel.Size = new System.Drawing.Size(381, 169);
+            this.top_panel.TabIndex = 11;
+            // 
+            // topTitle_label
+            // 
+            this.topTitle_label.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.topTitle_label.BackColor = System.Drawing.Color.Transparent;
+            this.topTitle_label.Font = new System.Drawing.Font("Sans Serif Collection", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.topTitle_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.topTitle_label.Location = new System.Drawing.Point(421, 10);
+            this.topTitle_label.Margin = new System.Windows.Forms.Padding(20, 10, 0, 0);
+            this.topTitle_label.Name = "topTitle_label";
+            this.topTitle_label.Size = new System.Drawing.Size(59, 51);
+            this.topTitle_label.TabIndex = 10;
+            this.topTitle_label.Text = "Top";
+            // 
+            // description_label
+            // 
+            this.description_label.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.description_label.AutoSize = false;
+            this.description_label.BackColor = System.Drawing.Color.Transparent;
+            this.description_label.Font = new System.Drawing.Font("Arial", 13F);
+            this.description_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.description_label.Location = new System.Drawing.Point(20, 61);
+            this.description_label.Margin = new System.Windows.Forms.Padding(20, 0, 0, 10);
+            this.description_label.Name = "description_label";
+            this.description_label.Size = new System.Drawing.Size(502, 174);
+            this.description_label.TabIndex = 8;
+            this.description_label.Text = "Description";
+            // 
+            // descriptionTitle_label
+            // 
+            this.descriptionTitle_label.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.descriptionTitle_label.BackColor = System.Drawing.Color.Transparent;
+            this.descriptionTitle_label.Font = new System.Drawing.Font("Sans Serif Collection", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.descriptionTitle_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.descriptionTitle_label.Location = new System.Drawing.Point(20, 10);
+            this.descriptionTitle_label.Margin = new System.Windows.Forms.Padding(20, 10, 0, 0);
+            this.descriptionTitle_label.Name = "descriptionTitle_label";
+            this.descriptionTitle_label.Size = new System.Drawing.Size(163, 51);
+            this.descriptionTitle_label.TabIndex = 7;
+            this.descriptionTitle_label.Text = "Description";
             // 
             // quiz_image
             // 
@@ -139,6 +202,8 @@ namespace ExamQuiz
             this.Controls.Add(this.quizName_label);
             this.Name = "UC_ConcreteQuizPage";
             this.Size = new System.Drawing.Size(922, 686);
+            this.quiz_panel.ResumeLayout(false);
+            this.quiz_panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.quiz_image)).EndInit();
             this.ResumeLayout(false);
 
@@ -152,6 +217,11 @@ namespace ExamQuiz
         private Guna.UI2.WinForms.Guna2Button start_button;
         private Guna.UI2.WinForms.Guna2Panel quiz_panel;
         private Quiz ConcreteQuiz;
+        private Guna.UI2.WinForms.Guna2HtmlLabel descriptionTitle_label;
+        private Guna.UI2.WinForms.Guna2HtmlLabel topTitle_label;
+        private Guna.UI2.WinForms.Guna2HtmlLabel description_label;
+        private Guna.UI2.WinForms.Guna2Panel top_panel;
+
         public event Action<Quiz> StartQuizHandler;
 
     }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GlobalsData;
 using Guna.UI2.WinForms;
 
 namespace ExamQuiz
@@ -32,29 +33,30 @@ namespace ExamQuiz
                 concreteQuiz_page.BringToFront();
             };
 
-            history_page.OpenQuizHandler += (quizName) =>
+            history_page.OpenQuizHandler += (quiz) =>
             {
-                foreach (var quiz in GlobalsData.GlobalData.quizzesData.Items)
-                {
-                    if (quizName == quiz.Name)
-                    {
-                        concreteQuiz_page.UpdateQuiz(quiz);
-                        break;
-                    }
-                }
+                concreteQuiz_page.UpdateQuiz(quiz);
                 quizzes_button.Checked = true;
+                concreteQuiz_page.BringToFront();
                 close2_button.Text = "RETURN";
                 close2_button.Click -= new System.EventHandler(this.close2_button_Click);
                 close2_button.Click += new System.EventHandler(this.return_button_Click);
-                concreteQuiz_page.BringToFront();
             };
 
             concreteQuiz_page.StartQuizHandler += (currentQuiz) =>
             {
                 this.Hide();
                 CurrentQuizFrom currentQuizFrom = new CurrentQuizFrom(currentQuiz);
-                currentQuizFrom.FormClosed += (s, args) => this.Show();
+                currentQuizFrom.FormClosed += (s, args) => { this.Show(); concreteQuiz_page.UpdateQuiz(currentQuiz); history_page.UC_HistoryPage_Update(); };
                 currentQuizFrom.Show();
+            };
+
+            settings_page.OpenLoginFormHandler += delegate
+            {
+                LoginForm loginForm = new LoginForm();
+                Account.user = null;
+                loginForm.Show();
+                this.Close();
             };
         }
 
@@ -70,7 +72,6 @@ namespace ExamQuiz
             if (history_button.Checked)
             {
                 history_page.BringToFront();
-                history_page.UC_HistoryPage_Update();
             }
             if (close2_button.Text == "RETURN")
             {
@@ -116,6 +117,11 @@ namespace ExamQuiz
             close2_button.Click += new System.EventHandler(this.close2_button_Click);
             close2_button.Text = "EXIT";
             quizzes_page.BringToFront();
+        }
+
+        private void close_button_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

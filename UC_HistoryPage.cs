@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -21,9 +22,18 @@ namespace ExamQuiz
             InitializeComponent();
         }
 
+        private void UC_HistoryPage_Load(object sender, EventArgs e)
+        {
+            UC_HistoryPage_Update();
+        }
+
         public void UC_HistoryPage_Update()
         {
-            for (int i = 0; i < Account.user.UserHistory.Count; i++)
+            if (Account.user == null)
+            {
+                return;
+            }
+            for (int i = 0; i < GlobalsData.Account.user.UserHistory.Count; i++)
             {
                 var panelToRemove = this.Controls.Find($"quiz{i}_panel", true).FirstOrDefault() as Guna2Panel;
 
@@ -37,8 +47,17 @@ namespace ExamQuiz
                     break;
                 }
             }
-            for (int i = 0; i < Account.user.UserHistory.Count; i++)
+            for (int i = 0; i < GlobalsData.Account.user.UserHistory.Count; i++)
             {
+                Quiz historyQuiz = null;
+                foreach (var quiz in GlobalData.quizzesData.Items)
+                {
+                    if (quiz.Name == Account.user.UserHistory[i].Item1)
+                    {
+                        historyQuiz = quiz;
+                    }
+                }
+
                 #region quiz_image
                 var quiz_image = new Guna.UI2.WinForms.Guna2PictureBox();
 
@@ -47,21 +66,30 @@ namespace ExamQuiz
                 quiz_image.BorderRadius = 30;
                 quiz_image.Cursor = System.Windows.Forms.Cursors.Hand;
                 quiz_image.Dock = System.Windows.Forms.DockStyle.Left;
-                quiz_image.Image = Image.FromFile(GlobalData.quizzesData.Items[0].Image);
+
+
+                if (historyQuiz != null)
+                {
+                    if (File.Exists(historyQuiz.Image))
+                    {
+                        quiz_image.Image = Image.FromFile(historyQuiz.Image);
+                        quiz_image.Tag = historyQuiz;
+                        quiz_image.Click += new System.EventHandler(OpenQuizFromHistory);
+                    }
+                }
                 quiz_image.Location = new System.Drawing.Point(0, 0);
                 quiz_image.Name = $"quiz{i}_image";
                 quiz_image.Size = new System.Drawing.Size(235, 100);
                 quiz_image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-                quiz_image.Tag = Account.user.UserHistory[i].Item1;
-                quiz_image.Click += new System.EventHandler(OpenQuizFromHistory);
 
                 #endregion
 
                 #region quizName_label
                 var quizName_label = new Guna.UI2.WinForms.Guna2HtmlLabel();
 
-                quizName_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                quizName_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
                 quizName_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+                quizName_label.MaximumSize = new System.Drawing.Size(210, 100);
                 quizName_label.Location = new System.Drawing.Point(255, 25);
                 quizName_label.Name = $"quizName{i}_label";
                 quizName_label.Text = Account.user.UserHistory[i].Item1;
@@ -108,7 +136,7 @@ namespace ExamQuiz
                 date_label.Location = new System.Drawing.Point(480, 55);
                 date_label.Name = $"date{i}_label";
                 date_label.Text = Account.user.UserHistory[i].Item3.ToShortDateString();
-                
+
                 #endregion
 
                 #region quiz_panel
@@ -141,7 +169,9 @@ namespace ExamQuiz
     
         public void OpenQuizFromHistory(object sender, EventArgs e)
         {
-            OpenQuizHandler?.Invoke((string)((Guna.UI2.WinForms.Guna2PictureBox)sender).Tag);
+            OpenQuizHandler?.Invoke((Quiz)((Guna2PictureBox)sender).Tag);
         }
+
+        
     }
 }

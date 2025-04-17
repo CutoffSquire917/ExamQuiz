@@ -266,9 +266,10 @@ namespace ExamQuiz
             this.Controls.Add(this.info_panel);
             this.Controls.Add(this.drag_panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CurrentQuizFrom";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CurrentQuizFrom";
+            this.Text = "Chill Quiz | ";
             this.Load += new System.EventHandler(this.CurrentQuizFrom_Load);
             this.drag_panel.ResumeLayout(false);
             this.info_panel.ResumeLayout(false);

@@ -32,6 +32,8 @@ namespace ExamQuiz
 
         private void CurrentQuizFrom_Load(object sender, EventArgs e)
         {
+            this.Text = $"Chill Quiz | {CurrentQuiz.Name}";
+
             LoadQuistion(CurrentQuiz.Questions[Index]);
         }
         private void LoadQuistion(Question question)
@@ -106,7 +108,6 @@ namespace ExamQuiz
                 this.answers_panel.Controls.Add(button);
 
             }
-            
 
         }
         private void FinalResults()

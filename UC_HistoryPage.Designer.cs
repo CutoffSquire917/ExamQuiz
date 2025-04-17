@@ -49,9 +49,11 @@ namespace ExamQuiz
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.AutoScrollMinSize = new System.Drawing.Size(0, 686);
             this.Controls.Add(this.pagesName_label);
             this.Name = "UC_HistoryPage";
             this.Size = new System.Drawing.Size(922, 686);
+            this.Load += new System.EventHandler(this.UC_HistoryPage_Load);
             this.ResumeLayout(false);
 
         }
@@ -59,6 +61,6 @@ namespace ExamQuiz
         #endregion
 
         private Guna.UI2.WinForms.Guna2HtmlLabel pagesName_label;
-        public Action<string> OpenQuizHandler;
+        public Action<Quiz> OpenQuizHandler;
     }
 }
